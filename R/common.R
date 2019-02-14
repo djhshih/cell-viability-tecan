@@ -1,3 +1,5 @@
+library(io);
+library(dplyr);
 
 #' Compute apparent growth rate and doubling time
 #' based on the basic exponential model.
@@ -50,7 +52,6 @@ design_t <- qread(design_t_fname);
 d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
 dx <- qread(data_t_fname) %>% left_join(design_t) %>% filter(!is.na(group));
 
-print(design_t)
 print(dx)
 
 d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
@@ -117,6 +118,7 @@ ys <- lapply(compounds,
 		);
 	}
 );
+names(ys) <- compounds;
 
 ys
 }
