@@ -1,0 +1,50 @@
+Application: Tecan i-control,,,,"Tecan i-control , 1.9.17.0",,,,,,,,
+Device: infinite M1000Pro,,,,Serial number: 1208003232,,,,,,,,
+Firmware: V_1.05_11/2011_S3LCE_ALPHA (Nov  3 2011/09.27.24),,,,"MAI, V_1.05_11/2011_S3LCE_ALPHA (Nov  3 2011/09.27.24)",,,,,,,,
+,,,,,,,,,,,,
+Date:,2/13/19,,,,,,,,,,,
+Time:,3:04:03 PM,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+System,,,,CANMEDW545332,,,,,,,,
+User,,,,CANMEDW545332\millslab,,,,,,,,
+Plate,,,,Corning 96 Flat Bottom Transparent Polystyrol  [COS96ft.pdfx],,,,,,,,
+Plate-ID (Stacker),,,,,,,,,,,,
+,,,,,,,,,,,,
+Shaking (Linear) Duration:,,,,1,s,,,,,,,
+Shaking (Linear) Amplitude:,,,,2,mm,,,,,,,
+Shaking (Linear) Frequency:,,,,654,rpm,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+Label: PB,,,,,,,,,,,,
+Mode,,,,Fluorescence Bottom Reading,,,,,,,,
+Excitation Wavelength,,,,560,nm,,,,,,,
+Emission Wavelength,,,,590,nm,,,,,,,
+Excitation Bandwidth,,,,10,nm,,,,,,,
+Emission Bandwidth,,,,10,nm,,,,,,,
+Gain,,,,55,Manual,,,,,,,
+Number of Flashes,,,,50,,,,,,,,
+Flash Frequency,,,,400,Hz,,,,,,,
+Integration Time,,,,20,µs,,,,,,,
+Lag Time,,,,0,µs,,,,,,,
+Settle Time,,,,0,ms,,,,,,,
+Start Time:,2/13/2019 3:04:04 PM,,,,,,,,,,,
+,,,,,,,,,,,,
+,Temperature: 25.1 ¡C,,,,,,,,,,,
+<>,1,2,3,4,5,6,7,8,9,10,11,12
+A,1,1,1,0,2,0,1,1,0,1,1,1
+B,0,2644,5485,10327,19580,25125,33971,32917,32358,34086,22668,1423
+C,1,3157,8066,11830,28751,30224,38841,36370,33107,30504,26798,1424
+D,1,2838,5374,12943,20260,26792,38008,34123,32668,32680,26861,1405
+E,1,1239,5309,21458,29768,28637,36634,33211,34015,32008,25927,1393
+F,1,1284,6240,21028,30242,28490,35215,32699,32675,29238,25802,1390
+G,1,1266,6010,16988,21602,24908,27465,26771,30565,27554,22931,1404
+H,1,1,1,1,1,1,1,1,1,1,1,1
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+End Time:,2/13/2019 3:04:34 PM,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+Movement,,,,Move Plate Out,,,,,,,,

@@ -1,0 +1,2 @@
+Ensure that instrument results output is set to matrix representation.
+Then save the data as a csv file.

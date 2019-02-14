@@ -1,0 +1,7 @@
+drug,stock_conc,stock_conc_unit,cmax,cmax_unit,solvent,dilution_factor,pts_above_cmax,max_conc,volume_total,volume_drug,volume_medium,solvent_dilution,solvent_volume
+Cisplatin,1.67,mM,14.4,uM,saline,3,1,43.2,180,13.97,166.03,39,2.59
+Vincristine,0.1,mM,0.007,uM,DMSO,3,2,0.063,500,0.95,499.06,1587,0.06
+Olaparib,50,mM,13.1,uM,DMSO,3,2,117.9,180,1.27,178.73,424,0.24
+Rucaparib,50,mM,6,uM,DMSO,3,2,54,300,0.97,299.03,926,0.11
+Selumetinib,10,mM,3.1,uM,DMSO,3,2,27.9,180,1.51,178.49,358,0.28
+FH535,10,mM,,,DMSO,3,2,20,180,1.08,178.92,500,0.20
