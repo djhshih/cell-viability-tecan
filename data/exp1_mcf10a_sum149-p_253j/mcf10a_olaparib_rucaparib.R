@@ -1,4 +1,6 @@
-source("R/common.R");
+root <- "../.."
+
+source(file.path(root, "R/common.R"));
 
 cell_line <- "MCF10A";
 compounds <- c("Olaparib", "Rucaparib");
@@ -19,8 +21,8 @@ assay <- list(
 
 annot_fname <- "annot/cell-viability-drug_2019-02-08b.csv";
 
-design_t0_fname <- "annot/plate-design_d0.tsv";
-design_t_fname <- "annot/plate-design_d5_2drugs.tsv";
+design_t0_fname <- file.path(root, "design/plate-design_w66_blank-r.tsv");
+design_t_fname <- file.path(root, "design/plate-design_w66_cp-tb_blank-r.tsv");
 
 out_dir <- "norm";
 

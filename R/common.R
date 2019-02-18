@@ -37,7 +37,8 @@ normalize_viability <- function(
 	annot_fname,
 	cell_line,
 	compounds,
-	assay
+	assay,
+	cells = NULL
 ) {
 
 annot <- qread(annot_fname);
@@ -51,6 +52,17 @@ design_t <- qread(design_t_fname);
 
 d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
 dx <- qread(data_t_fname) %>% left_join(design_t) %>% filter(!is.na(group));
+
+if (!is.null(cells)) {
+	if (!is.null(d0$cell)) {
+		d0 <- mutate(d0, cell = factor(cell, labels=cells)) %>%
+			filter(cell == cell_line) %>% select(-cell);
+	}
+	if (!is.null(dx$cell)) {
+		dx <- mutate(dx, cell = factor(cell, labels=cells)) %>%
+			filter(cell == cell_line) %>% select(-cell);
+	}
+}
 
 print(dx)
 
