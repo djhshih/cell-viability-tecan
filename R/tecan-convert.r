@@ -9,9 +9,6 @@ pr <- add_argument(pr, "--outdir", help = "output directory", default=".");
 
 argv <- parse_args(pr);
 
-in.fname <- "mcf10a_d0_i1_2019-02-08.csv";
-#in.fname <- "mcf10a_d5_i4_selumetinib_fh535_2019-02-13.csv";
-
 in.fname <- argv$input;
 
 out.fname <- as.filename(in.fname);
@@ -24,7 +21,7 @@ x <- readLines(in.fname);
 
 # extract matrix block
 first.idx <- grep("^<>", x);
-last.idx <- grep("^,", x[first.idx:length(x)])[1] + first.idx - 2;
+last.idx <- grep("(^,)|(^$)", x[first.idx:length(x)])[1] + first.idx - 2;
 xf <- x[first.idx:last.idx];
 
 sep <- ",";
