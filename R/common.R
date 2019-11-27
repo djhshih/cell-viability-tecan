@@ -30,6 +30,22 @@ gi_value <- function(x, x0, xc) {
 	)
 }
 
+standardize_compound <- function(x) {
+	ifelse(
+		grepl("\\d", x),
+		# name contains a digit; probably a preliminary compound id:
+		#   use uppercase
+		toupper(x),
+		# name only contains letters: it is probably a generic compound name:
+		#   use title case
+		tools::toTitleCase(x)
+	)
+}
+
+dilution_to_conc <- function(dilution, max_conc, dilution_factor) {
+	max_conc * (1 / dilution_factor)^(dilution - 1)
+}
+
 #' Normalize viability assay.
 normalize_viability <- function(
 	data_t0_fname, data_t_fname,
@@ -55,12 +71,12 @@ dx <- qread(data_t_fname) %>% left_join(design_t) %>% filter(!is.na(group));
 
 if (!is.null(cells)) {
 	if (!is.null(d0$cell)) {
-		d0 <- mutate(d0, cell = factor(cell, labels=cells)) %>%
-			filter(cell == cell_line) %>% select(-cell);
+		d0 <- mutate(d0, cell = factor(cell, levels=levels(cell), labels=cells)) %>%
+			filter(is.na(cell) | cell == cell_line) %>% select(-cell);
 	}
 	if (!is.null(dx$cell)) {
-		dx <- mutate(dx, cell = factor(cell, labels=cells)) %>%
-			filter(cell == cell_line) %>% select(-cell);
+		dx <- mutate(dx, cell = factor(cell, levels=levels(cell), labels=cells)) %>%
+			filter(is.na(cell) | cell == cell_line) %>% select(-cell);
 	}
 }
 
@@ -71,8 +87,9 @@ d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
 d0 <- mutate(d0, value_bg = pmax(value - d0.blank, 0));
 d0.untrt <- mean(filter(d0, group == "ctl_untrt")$value_bg);
 
-
-dx$compound <- factor(dx$compound, labels=compounds);
+# specifcy levels s.t. function does not throw error when dx$compound does not
+# contain all the possible levels.
+dx$compound <- factor(dx$compound, levels=levels(dx$compound), labels=compounds);
 
 dx.blank <- mean(filter(dx, group == "ctl_blank")$value);
 
@@ -91,10 +108,6 @@ dx <- mutate(dx,
 
 dx.cps <- split(dx, dx$compound);
 annotf.cps <- split(annotf, annotf$compound);
-
-dilution_to_conc <- function(dilution, max_conc, dilution_factor) {
-	max_conc * (1 / dilution_factor)^(dilution - 1)
-}
 
 ys <- lapply(compounds,
 	function(cp) {
@@ -135,3 +148,127 @@ names(ys) <- compounds;
 ys
 }
 
+#' Normalize viability assay for drug combinations.
+normalize_viability_combo <- function(
+	data_t0_fname, data_t_fname,
+	design_t0_fname, design_t_fname,
+	annot_fname,
+	cell_line,
+	combos,
+	assay,
+	cells = NULL
+) {
+
+annot <- qread(annot_fname);
+
+combo_to_info <- function(combos) {
+	ss <- strsplit(combos, "_", fixed=TRUE);
+	combo_methods <- unlist(lapply(ss, function(x) x[1]));
+	combo_rests <- unlist(lapply(ss, function(x) x[2]));
+	combo_infos <- mapply(
+		function(method, combo) {
+			compounds <- strsplit(combo, "-", fixed=TRUE)[[1]];
+			list(method = method, compounds = compounds)
+		},
+		combo_methods,
+		combo_rests,
+		SIMPLIFY = FALSE
+	);
+	names(combo_infos) <- combos;
+
+	combo_infos
+}
+
+annotf <- select(annot, compound = drug, max_conc, dilution_factor, solvent);
+
+design_t0 <- qread(design_t0_fname);
+design_t <- qread(design_t_fname);
+
+d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
+dx <- qread(data_t_fname) %>% left_join(design_t) %>% filter(!is.na(group));
+
+if (!is.null(cells)) {
+	if (!is.null(d0$cell)) {
+		d0 <- mutate(d0, cell = factor(cell, levels=levels(cell), labels=cells)) %>%
+			filter(is.na(cell) | cell == cell_line) %>% select(-cell);
+	}
+	if (!is.null(dx$cell)) {
+		dx <- mutate(dx, cell = factor(cell, levels=levels(cell), labels=cells)) %>%
+			filter(is.na(cell) | cell == cell_line) %>% select(-cell);
+	}
+}
+
+print(dx)
+
+d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
+
+d0 <- mutate(d0, value_bg = pmax(value - d0.blank, 0));
+d0.untrt <- mean(filter(d0, group == "ctl_untrt")$value_bg);
+
+# specifcy levels s.t. function does not throw error when dx$compound does not
+# contain all the possible levels.
+# consider each combo as a new compound
+dx$compound <- factor(dx$compound, levels=levels(dx$compound), labels=combos);
+
+dx.blank <- mean(filter(dx, group == "ctl_blank")$value);
+
+dx <- mutate(dx, value_bg = pmax(value - dx.blank, 0));
+
+dx.vehicle <- mean(filter(dx, group == "ctl_vehicle")$value_bg);
+dx.untrt <- mean(filter(dx, group == "ctl_untrt")$value_bg);
+
+growth <- growth_characteristics(dx.untrt, d0.untrt, assay$duration_hours);
+
+dx <- mutate(dx,
+	relative_viability = value_bg / dx.vehicle,
+	relative_growth = gi_value(value_bg, d0.untrt, dx.vehicle),
+	relative_growth_rate = gr_value(value_bg, d0.untrt, dx.vehicle)
+);
+
+dx.cps <- split(dx, dx$compound);
+annotf.cps <- split(annotf, annotf$compound);
+
+
+ys <- lapply(combos,
+	function(combo) {
+
+		info <- combo_to_info(combo)[[1]];
+
+		for (i in 1:length(info$compounds)) {
+			cp <- info$compounds[i];
+			dx.cps[[combo]][[paste0("concentration", i)]] <- dilution_to_conc(
+				dx.cps[[combo]][[paste0("dilution", i)]], annotf.cps[[cp]]$max_conc, annotf.cps[[cp]]$dilution_factor);
+		}
+
+		list(
+			meta = list(
+				cell_line = cell_line,
+				compound = combo,
+				assay = assay,
+				sources = list(
+					design_t0_fname = design_t0_fname,
+					design_t_fname = design_t_fname,
+					data_t0_fname = data_t0_fname,
+					data_t_fname = data_t_fname
+				),
+				growth = growth,
+				ctl_values = list(
+					t0 = list(
+						blank = d0.blank,
+						untrt = d0.untrt
+					),
+					t = list(
+						blank = dx.blank,
+						untrt = dx.untrt,
+						vehicle = dx.vehicle
+					)
+				)
+			),
+			data = select(dx.cps[[combo]], -group, -dilution1, -dilution2, -compound)
+		);
+	}
+);
+names(ys) <- combos;
+
+ys
+}
