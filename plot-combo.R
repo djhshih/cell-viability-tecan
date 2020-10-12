@@ -196,7 +196,7 @@ for (i in 1:length(xs)) {
 	}
 }
 
-qdraw(g, width = 5, height = 6, file = insert(out.fname, ext="pdf"));
+qdraw(g, width = 3, height = 4, file = insert(out.fname, ext="pdf"));
 
 qwrite(ic50s, insert(out.fname, "ic50", ext="tsv"));
 qwrite(ec50s, insert(out.fname, "ec50", ext="tsv"));
