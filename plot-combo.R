@@ -42,12 +42,7 @@ measure <- "relative_viability";
 
 model <- "LL4";
 
-fnames <- c(
-	"data/exp3_sum149-p_sum149-c2/norm/i2/viability_sum149-p_talazoparib.rds",
-	"data/exp3_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_talazoparib.rds"
-);
-
-
+# third fname must point to the results from the combination
 
 fnames <- c(
 	"Talazoparib"="data/exp3_sum149-p_sum149-c2/norm/i2/viability_sum149-p_talazoparib.rds",
@@ -97,15 +92,25 @@ if (length(unique(compounds)) == 1) {
 
 out.fname <- filename("drc", tag=c(gsub("_", "-", measure), paste0(tolower(samples), "_", tolower(compounds))));
 
-# select measure and concentration
+x.combo <- xs[[3]];
+concentrations1 <- unique(sort(x.combo$data$concentration1));
+concentrations2 <- unique(sort(x.combo$data$concentration2));
+
+ratio <- concentrations1 / concentrations2;
+
+# we only support the case where the two drugs are used a constant ratio
+stopifnot(abs(ratio - ratio[1]) < 1e-6)
+ratio <- ratio[1];
+
+# convert concentration2 to concentration1
+xs[[2]]$data$concentration <- xs[[2]]$data$concentration * ratio;
+# use concentration1
+xs[[3]]$data$concentration <- xs[[3]]$data$concentration1;
+xs[[3]]$data$concentration1 <- NULL;
+xs[[3]]$data$concentration2 <- NULL;
+
+# select measure
 xs <- lapply(xs, function(x) {
-	if (is.null(x$data$concentration)) {
-		x$data$concentration <- pmin(x$data$concentration1, x$data$concentration2);
-		#x$data$concentration <- x$data$concentration2;
-	}
-	x$data$concentration1 <- NULL;
-	x$data$concentration2 <- NULL;
-	x$data$concentration <- rank(x$data$concentration);
 	x$data$y <- x$data[[measure]];
 	x
 });
@@ -131,7 +136,7 @@ if (model == "LL5") {
 ic50s <- data.frame(group = names(xs), do.call(rbind, lapply(rv.fits, ic50)), row.names=NULL);
 ec50s <- data.frame(group = names(xs), do.call(rbind, lapply(rv.fits, ec50)), row.names=NULL);
 
-concentrations <- unlist(lapply(xs, function(x) x$data$concentration));
+concentrations <- concentrations1;
 max.conc <- max(concentrations);
 min.conc <- min(concentrations);
 
@@ -159,13 +164,19 @@ ymax <- max(all.n.s$ym, all.n.s$ymax, unlist(lapply(bands, function(b) c(b$p, b$
 
 g <- ggplot(all.n.s, aes(x = concentration, y = ym)) + theme_bw() +
 		geom_point(aes(colour=group)) +
-		scale_x_log10() + 
 		scale_fill_manual(values=cols) +
 		scale_colour_manual(values=cols) + 
 		guides(fill = FALSE) +
 		ylab(gsub("_", " ", tools::toTitleCase(measure))) +
-		xlab("Concentration (uM)") +
-		ggtitle(pl.title);
+		ggtitle(pl.title) + 
+		theme(legend.position = "bottom", legend.title = element_blank()) +
+		scale_x_log10(
+			name = sprintf("%s concentration (uM)", names(xs)[1]),
+			sec.axis = sec_axis(
+				trans =  ~ . / ratio,
+				name = sprintf("%s concentration (uM)", names(xs)[2])
+			)
+		)
 	
 if (measure == "relative_viability") {
 	g <- g + scale_y_continuous(breaks=c(0, 0.25, 0.5, 0.75, 1.0),
@@ -185,7 +196,7 @@ for (i in 1:length(xs)) {
 	}
 }
 
-qdraw(g, width = 6, height = 5, file = insert(out.fname, ext="pdf"));
+qdraw(g, width = 5, height = 6, file = insert(out.fname, ext="pdf"));
 
 qwrite(ic50s, insert(out.fname, "ic50", ext="tsv"));
 qwrite(ec50s, insert(out.fname, "ec50", ext="tsv"));
