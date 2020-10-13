@@ -235,37 +235,6 @@ fnames <- c(
 #);
 
 fnames <- c(
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_bms599626.rds",
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_bms599626.rds"
-);
-
-fnames <- c(
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_sch772984.rds",
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_sch772984.rds"
-);
-
-fnames <- c(
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_vx11e.rds",
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_vx11e.rds"
-);
-
-fnames <- c(
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_fr180204.rds",
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_fr180204.rds"
-);
-
-fnames <- c(
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_pictilisib.rds",
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_pictilisib.rds"
-);
-
-fnames <- c(
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_everolimus.rds",
-	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_everolimus.rds"
-);
-
-
-fnames <- c(
 	"data/exp5_sum149-p_sum149-c2/norm/i3/viability_sum149-p_cisplatin.rds",
 	"data/exp5_sum149-p_sum149-c2/norm/i3/viability_sum149-c2_cisplatin.rds"
 );
@@ -641,18 +610,25 @@ fnames <- c(
 
 
 fnames <- c(
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q2-pre-d_selumetinib.rds",
-	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q2-pre-t_selumetinib.rds"
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-d_talazoparib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-t_talazoparib.rds"
+);
+
+
+fnames <- c(
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q4-pre-d_talazoparib.rds",
+	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q4-pre-t_talazoparib.rds"
 );
 
 fnames <- c(
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q4-pre-d_selumetinib.rds",
-	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q4-pre-t_selumetinib.rds"
-);
-
-fnames <- c(
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q6-pre-d_selumetinib.rds",
-	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q6-pre-t_selumetinib.rds"
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q6-pre-d_talazoparib.rds",
+	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q6-pre-t_talazoparib.rds"
 );
 
 fnames <- c(
@@ -670,50 +646,136 @@ fnames <- c(
 );
 
 fnames <- c(
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q6-pre-d_talazoparib.rds",
-	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q6-pre-t_talazoparib.rds"
-);
-
-
-
-
-fnames <- c(
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-d_selumetinib.rds",
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-t_selumetinib.rds"
-);
-
-fnames <- c(
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-d_talazoparib.rds",
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-t_talazoparib.rds"
-);
-
-fnames <- c(
-	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
-	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-d_talazoparib.rds",
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-t_talazoparib.rds"
-);
-
-fnames <- c(
 	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
 	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
 	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q2-pre-d_talazoparib.rds",
 	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q2-pre-t_talazoparib.rds"
 );
 
+
 fnames <- c(
-	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
-	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
-	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q4-pre-d_talazoparib.rds",
-	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q4-pre-t_talazoparib.rds"
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-d_talazoparib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-t_talazoparib.rds"
 );
 
 fnames <- c(
-	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
-	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-d_selumetinib.rds",
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q5-pre-t_selumetinib.rds"
+);
+
+
+# important
+fnames <- c(
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q2-pre-d_selumetinib.rds",
+	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q2-pre-t_selumetinib.rds"
+);
+
+fnames <- c(
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q4-pre-d_selumetinib.rds",
+	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q4-pre-t_selumetinib.rds"
+);
+
+fnames <- c(
+	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q6-pre-d_selumetinib.rds",
+	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q6-pre-t_selumetinib.rds"
+);
+
+fnames <- c(
 	"data/exp16_sum149-q-pre/norm/i2/viability_sum149-q6-pre-d_talazoparib.rds",
 	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q6-pre-t_talazoparib.rds"
 );
+
+# important
+fnames <- c(
+	"data/exp13_sum149/norm/i2/viability_sum149-p_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c2_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c19_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c20_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c29_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c30_talazoparib.rds"
+);
+
+# important
+fnames <- c(
+	"data/exp13_sum149/norm/i2/viability_sum149-p_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c2_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c19_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c20_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c29_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c30_selumetinib.rds"
+);
+
+# EGFRi
+fnames <- c(
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_bms599626.rds",
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_bms599626.rds"
+);
+
+# ERKi
+fnames <- c(
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_sch772984.rds",
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_sch772984.rds"
+);
+
+# ERKi
+fnames <- c(
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_fr180204.rds",
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_fr180204.rds"
+);
+
+# ERK2i
+fnames <- c(
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_vx11e.rds",
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_vx11e.rds"
+);
+
+# PI3Ki
+fnames <- c(
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_pictilisib.rds",
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_pictilisib.rds"
+);
+
+# dual tyrosine kinase inhibitor of HER2 and EGFR
+fnames <- c(
+	"data/exp11_sum149/norm/i2/viability_sum149-p_lapatinib.rds",
+	"data/exp11_sum149/norm/i2/viability_sum149-c2_lapatinib.rds"
+);
+
+# mTORi
+fnames <- c(
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_everolimus.rds",
+	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-c2_everolimus.rds"
+);
+
+fnames <- c(
+	"data/exp13_sum149/norm/i2/viability_sum149-p_cisplatin.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c2_cisplatin.rds"
+);
+
+fnames <- c(
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-p_selumetinib.rds",
+	"data/exp3_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_selumetinib.rds"
+);
+
+
+# 4e2631b
+fnames <- c(
+	"data/exp4_sum149-p_sum149-c2/norm/i4/viability_sum149-p_talazoparib.rds",
+	"data/exp4_sum149-p_sum149-c2/norm/i4/viability_sum149-c2_talazoparib.rds"
+);
+
+# 58350f1
+fnames <- c(
+	"data/exp4_sum149-p_sum149-c2/norm/i3/viability_sum149-p_rucaparib.rds",
+	"data/exp4_sum149-p_sum149-c2/norm/i3/viability_sum149-c2_rucaparib.rds"
+);
+
+# 625b589
+fnames <- c(
+	"data/exp13_sum149/norm/i2/viability_sum149-p_olaparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c2_olaparib.rds"
+);
+
 
 
 xs <- lapply(fnames, qread);
@@ -780,8 +842,20 @@ bands <- lapply(rv.fits, function(fit) fit_band(fit, c(min.conc, max.conc)));
 options(scipen=1e4)
 
 stopifnot(length(xs) <= 7);
-cols <- brewer.pal(7, "Set1")[1:length(xs)];
-names(cols) <- names(xs);
+#cols <- brewer.pal(7, "Set1")[1:length(xs)];
+#names(cols) <- names(xs);
+
+library(ggsci)
+shift <- function(x, n=1) {
+		if (n == 0) {
+					x
+	} else {
+				c(tail(x, -n), head(x, n))
+		}
+}
+cols <- shift(pal_d3()(8), -1);
+# second resistant clone is missing
+cols <- cols[-3];
 
 
 all.n <- do.call(rbind,
@@ -806,7 +880,8 @@ g <- ggplot(all.n.s, aes(x = concentration, y = ym)) + theme_bw() +
 		guides(fill = FALSE) +
 		ylab(gsub("_", " ", tools::toTitleCase(measure))) +
 		xlab("Concentration (uM)") +
-		ggtitle(pl.title);
+		ggtitle(pl.title) +
+		theme(legend.position = "bottom", legend.title = element_blank())
 
 if (draw.ci) {
 	data.ymin <- min(ymin);
@@ -836,7 +911,7 @@ for (i in 1:length(xs)) {
 	}
 }
 
-qdraw(g, width = 6, height = 5, file = insert(out.fname, ext="pdf"));
+qdraw(g, width = 3, height = 3.5, file = insert(out.fname, ext="pdf"));
 
 qwrite(ic50s, insert(out.fname, "ic50", ext="tsv"));
 qwrite(ec50s, insert(out.fname, "ec50", ext="tsv"));
