@@ -685,26 +685,6 @@ fnames <- c(
 	"data/exp15_sum149-q-pre/norm/i2/viability_sum149-q6-pre-t_talazoparib.rds"
 );
 
-# important
-fnames <- c(
-	"data/exp13_sum149/norm/i2/viability_sum149-p_talazoparib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c2_talazoparib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c19_talazoparib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c20_talazoparib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c29_talazoparib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c30_talazoparib.rds"
-);
-
-# important
-fnames <- c(
-	"data/exp13_sum149/norm/i2/viability_sum149-p_selumetinib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c2_selumetinib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c19_selumetinib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c20_selumetinib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c29_selumetinib.rds",
-	"data/exp13_sum149/norm/i2/viability_sum149-c30_selumetinib.rds"
-);
-
 # EGFRi
 fnames <- c(
 	"data/exp8_sum149-p_sum149-c2/norm/i2/viability_sum149-p_bms599626.rds",
@@ -776,6 +756,29 @@ fnames <- c(
 	"data/exp13_sum149/norm/i2/viability_sum149-c2_olaparib.rds"
 );
 
+# important
+fnames <- c(
+	"data/exp13_sum149/norm/i2/viability_sum149-p_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c2_selumetinib.rds",
+	# missing c17 (RC2)
+	"data/exp13_sum149/norm/i2/viability_sum149-c19_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c20_selumetinib.rds",
+	# missing c26 (RC5)
+	"data/exp13_sum149/norm/i2/viability_sum149-c29_selumetinib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c30_selumetinib.rds"
+);
+
+# important
+fnames <- c(
+	"data/exp13_sum149/norm/i2/viability_sum149-p_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c2_talazoparib.rds",
+	# missing c17 (RC2)
+	"data/exp13_sum149/norm/i2/viability_sum149-c19_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c20_talazoparib.rds",
+	# missing c26 (RC5)
+	"data/exp13_sum149/norm/i2/viability_sum149-c29_talazoparib.rds",
+	"data/exp13_sum149/norm/i2/viability_sum149-c30_talazoparib.rds"
+);
 
 
 xs <- lapply(fnames, qread);
@@ -854,8 +857,8 @@ shift <- function(x, n=1) {
 		}
 }
 cols <- shift(pal_d3()(8), -1);
-# second resistant clone is missing
-cols <- cols[-3];
+# C17 and C26 clones is missing
+cols <- cols[c(-3, -6)];
 
 
 all.n <- do.call(rbind,
