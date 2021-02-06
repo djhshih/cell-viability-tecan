@@ -22,6 +22,10 @@ x <- readLines(in.fname);
 # extract matrix block
 first.idx <- grep("^<>", x);
 last.idx <- grep("(^,)|(^$)", x[first.idx:length(x)])[1] + first.idx - 2;
+if (is.na(last.idx)) {
+	# extra lines below matrix block has been deleted
+	last.idx <- length(x);
+}
 xf <- x[first.idx:last.idx];
 
 sep <- ",";
