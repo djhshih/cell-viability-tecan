@@ -63,14 +63,20 @@ annotf <- select(annot[match(compounds, annot$drug), ],
 	compound = drug, max_conc, dilution_factor, solvent) %>%
 	mutate(compound = factor(compound));
 
-design_t0 <- qread(design_t0_fname);
+if (!is.null(design_t0_fname)) {
+	design_t0 <- qread(design_t0_fname);
+}
 design_t <- qread(design_t_fname);
 
-d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
+if (!is.null(data_t0_fname)) {
+	d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
+} else {
+	d0 <- NULL;
+}
 dx <- qread(data_t_fname) %>% left_join(design_t) %>% filter(!is.na(group));
 
 if (!is.null(cells)) {
-	if (!is.null(d0$cell)) {
+	if (!is.null(d0) && !is.null(d0$cell)) {
 		d0 <- mutate(d0, cell = factor(cell, levels=levels(cell), labels=cells)) %>%
 			filter(is.na(cell) | cell == cell_line) %>% select(-cell);
 	}
@@ -82,10 +88,15 @@ if (!is.null(cells)) {
 
 print(dx)
 
-d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
+if (!is.null(d0)) {
+	d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
 
-d0 <- mutate(d0, value_bg = pmax(value - d0.blank, 0));
-d0.untrt <- mean(filter(d0, group == "ctl_untrt")$value_bg);
+	d0 <- mutate(d0, value_bg = pmax(value - d0.blank, 0));
+	d0.untrt <- mean(filter(d0, group == "ctl_untrt")$value_bg);
+} else {
+	d0.blank <- NULL;
+	d0.untrt <- NULL;
+}
 
 # specifcy levels s.t. function does not throw error when dx$compound does not
 # contain all the possible levels.
@@ -98,13 +109,22 @@ dx <- mutate(dx, value_bg = pmax(value - dx.blank, 0));
 dx.vehicle <- mean(filter(dx, group == "ctl_vehicle")$value_bg);
 dx.untrt <- mean(filter(dx, group == "ctl_untrt")$value_bg);
 
-growth <- growth_characteristics(dx.untrt, d0.untrt, assay$duration_hours);
+if (!is.null(d0.untrt)) {
+	growth <- growth_characteristics(dx.untrt, d0.untrt, assay$duration_hours);
+} else {
+	growth <- NULL;
+}
 
 dx <- mutate(dx,
 	relative_viability = value_bg / dx.vehicle,
-	relative_growth = gi_value(value_bg, d0.untrt, dx.vehicle),
-	relative_growth_rate = gr_value(value_bg, d0.untrt, dx.vehicle)
 );
+
+if (!is.null(d0.untrt)) {
+	dx <- mutate(dx,
+		relative_growth = gi_value(value_bg, d0.untrt, dx.vehicle),
+		relative_growth_rate = gr_value(value_bg, d0.untrt, dx.vehicle)
+	);
+}
 
 dx.cps <- split(dx, dx$compound);
 annotf.cps <- split(annotf, annotf$compound);
@@ -181,14 +201,21 @@ combo_to_info <- function(combos) {
 
 annotf <- select(annot, compound = drug, max_conc, dilution_factor, solvent);
 
-design_t0 <- qread(design_t0_fname);
+if (!is.null(design_t0_fname)) {
+	design_t0 <- qread(design_t0_fname);
+}
 design_t <- qread(design_t_fname);
 
-d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
+if (!is.null(data_t0_fname)) {
+	d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
+} else {
+	d0 <- NULL;
+}
+
 dx <- qread(data_t_fname) %>% left_join(design_t) %>% filter(!is.na(group));
 
 if (!is.null(cells)) {
-	if (!is.null(d0$cell)) {
+	if (!is.null(d0) && !is.null(d0$cell)) {
 		d0 <- mutate(d0, cell = factor(cell, levels=levels(cell), labels=cells)) %>%
 			filter(is.na(cell) | cell == cell_line) %>% select(-cell);
 	}
@@ -200,10 +227,15 @@ if (!is.null(cells)) {
 
 print(dx)
 
-d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
+if (!is.null(d0)) {
+	d0.blank <- mean(filter(d0, group == "ctl_blank")$value);
 
-d0 <- mutate(d0, value_bg = pmax(value - d0.blank, 0));
-d0.untrt <- mean(filter(d0, group == "ctl_untrt")$value_bg);
+	d0 <- mutate(d0, value_bg = pmax(value - d0.blank, 0));
+	d0.untrt <- mean(filter(d0, group == "ctl_untrt")$value_bg);
+} else {
+	d0.blank <- NULL;
+	d0.untrt <- NULL;
+}
 
 # specifcy levels s.t. function does not throw error when dx$compound does not
 # contain all the possible levels.
@@ -217,13 +249,22 @@ dx <- mutate(dx, value_bg = pmax(value - dx.blank, 0));
 dx.vehicle <- mean(filter(dx, group == "ctl_vehicle")$value_bg);
 dx.untrt <- mean(filter(dx, group == "ctl_untrt")$value_bg);
 
-growth <- growth_characteristics(dx.untrt, d0.untrt, assay$duration_hours);
+if (!is.null(d0.untrt)) {
+	growth <- growth_characteristics(dx.untrt, d0.untrt, assay$duration_hours);
+} else {
+	growth <- NULL;
+}
 
 dx <- mutate(dx,
 	relative_viability = value_bg / dx.vehicle,
-	relative_growth = gi_value(value_bg, d0.untrt, dx.vehicle),
-	relative_growth_rate = gr_value(value_bg, d0.untrt, dx.vehicle)
 );
+
+if (!is.null(d0.untrt)) {
+	dx <- mutate(dx,
+		relative_growth = gi_value(value_bg, d0.untrt, dx.vehicle),
+		relative_growth_rate = gr_value(value_bg, d0.untrt, dx.vehicle)
+	);
+}
 
 dx.cps <- split(dx, dx$compound);
 annotf.cps <- split(annotf, annotf$compound);
