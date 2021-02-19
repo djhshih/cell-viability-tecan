@@ -57,16 +57,16 @@ normalize_viability <- function(
 	cells = NULL
 ) {
 
-annot <- qread(annot_fname);
+annot <- qread(annot_fname, stringsAsFactors=TRUE);
 
 annotf <- select(annot[match(compounds, annot$drug), ],
 	compound = drug, max_conc, dilution_factor, solvent) %>%
 	mutate(compound = factor(compound));
 
 if (!is.null(design_t0_fname)) {
-	design_t0 <- qread(design_t0_fname);
+	design_t0 <- qread(design_t0_fname, stringsAsFactors=TRUE);
 }
-design_t <- qread(design_t_fname);
+design_t <- qread(design_t_fname, stringsAsFactors=TRUE);
 
 if (!is.null(data_t0_fname)) {
 	d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
@@ -179,7 +179,7 @@ normalize_viability_combo <- function(
 	cells = NULL
 ) {
 
-annot <- qread(annot_fname);
+annot <- qread(annot_fname, stringsAsFactors=TRUE);
 
 combo_to_info <- function(combos) {
 	ss <- strsplit(combos, "_", fixed=TRUE);
@@ -202,9 +202,9 @@ combo_to_info <- function(combos) {
 annotf <- select(annot, compound = drug, max_conc, dilution_factor, solvent);
 
 if (!is.null(design_t0_fname)) {
-	design_t0 <- qread(design_t0_fname);
+	design_t0 <- qread(design_t0_fname, stringsAsFactors=TRUE);
 }
-design_t <- qread(design_t_fname);
+design_t <- qread(design_t_fname, stringsAsFactors=TRUE);
 
 if (!is.null(data_t0_fname)) {
 	d0 <- qread(data_t0_fname) %>% left_join(design_t0) %>% filter(!is.na(group));
