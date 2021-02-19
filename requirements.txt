@@ -1,0 +1,8 @@
+ggplot2
+drc
+io
+dplyr
+ggalt
+RColorBrewer
+digest
+ggsci
