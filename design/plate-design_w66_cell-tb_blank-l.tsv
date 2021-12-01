@@ -11,7 +11,7 @@ A9	NA	NA	NA	NA
 A10	NA	NA	NA	NA
 A11	NA	NA	NA	NA
 A12	NA	NA	NA	NA
-B1	NA	NA	NA	NA
+B1	ctl_blank	NA	NA	A
 B2	trt_cp	1	A	A
 B3	trt_cp	2	A	A
 B4	trt_cp	3	A	A
@@ -22,7 +22,7 @@ B8	trt_cp	7	A	A
 B9	trt_cp	8	A	A
 B10	ctl_vehicle	0	NA	A
 B11	ctl_untrt	0	NA	A
-B12	ctl_blank	NA	NA	B
+B12	NA	NA	NA	NA
 C1	ctl_blank	NA	NA	A
 C2	trt_cp	1	A	A
 C3	trt_cp	2	A	A
@@ -35,7 +35,7 @@ C9	trt_cp	8	A	A
 C10	ctl_vehicle	0	NA	A
 C11	ctl_untrt	0	NA	A
 C12	NA	NA	NA	NA
-D1	NA	NA	NA	NA
+D1	ctl_blank	NA	NA	A
 D2	trt_cp	1	A	A
 D3	trt_cp	2	A	A
 D4	trt_cp	3	A	A
@@ -46,8 +46,8 @@ D8	trt_cp	7	A	A
 D9	trt_cp	8	A	A
 D10	ctl_vehicle	0	NA	A
 D11	ctl_untrt	0	NA	A
-D12	ctl_blank	NA	NA	B
-E1	ctl_blank	NA	NA	A
+D12	NA	NA	NA	NA
+E1	ctl_blank	NA	NA	B
 E2	trt_cp	1	B	B
 E3	trt_cp	2	B	B
 E4	trt_cp	3	B	B
@@ -59,7 +59,7 @@ E9	trt_cp	8	B	B
 E10	ctl_vehicle	0	NA	B
 E11	ctl_untrt	0	NA	B
 E12	NA	NA	NA	NA
-F1	NA	NA	NA	NA
+F1	ctl_blank	NA	NA	B
 F2	trt_cp	1	B	B
 F3	trt_cp	2	B	B
 F4	trt_cp	3	B	B
@@ -70,8 +70,8 @@ F8	trt_cp	7	B	B
 F9	trt_cp	8	B	B
 F10	ctl_vehicle	0	NA	B
 F11	ctl_untrt	0	NA	B
-F12	ctl_blank	NA	NA	B
-G1	ctl_blank	NA	NA	A
+F12	NA	NA	NA	NA
+G1	ctl_blank	NA	NA	B
 G2	trt_cp	1	B	B
 G3	trt_cp	2	B	B
 G4	trt_cp	3	B	B
