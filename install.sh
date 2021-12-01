@@ -1,3 +1,2 @@
 pip install xlsx2csv
-# R: filenamer
-# R: argparser
+rip install -p filenamer argparser
