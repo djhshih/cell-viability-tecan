@@ -75,7 +75,6 @@ fnames <- c(
 );
 
 
-
 #fnames <- c(
 #	i1 = "data/exp3_sum149-p_sum149-c2/norm/i1/viability_sum149-p_selumetinib.rds",
 #	i2 = "data/exp3_sum149-p_sum149-c2/norm/i2/viability_sum149-p_selumetinib.rds",
@@ -781,6 +780,57 @@ fnames <- c(
 );
 
 
+fnames <- c(
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_talazoparib_seed-1000.rds",
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_talazoparib_seed-1000.rds"
+)
+
+
+fnames <- c(
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_selumetinib_seed-1000.rds",
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_selumetinib_seed-1000.rds"
+)
+
+
+
+
+
+
+
+
+fnames <- c(
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_talazoparib_seed-2000.rds",
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_talazoparib_seed-2000.rds"
+)
+
+fnames <- c(
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_selumetinib_seed-2000.rds",
+	"data/exp1_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_selumetinib_seed-2000.rds"
+)
+
+
+fnames <- c(
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_talazoparib_seed-2000.rds",
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_talazoparib_seed-2000.rds"
+)
+
+fnames <- c(
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_selumetinib_seed-2000.rds",
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_selumetinib_seed-2000.rds"
+)
+
+fnames <- c(
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_selumetinib_seed-1000.rds",
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_selumetinib_seed-1000.rds"
+)
+
+fnames <- c(
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-p_talazoparib_seed-1000.rds",
+	"data/exp2_hcc1806-p_hcc1806-r/norm/i2/viability_hcc1806-r_talazoparib_seed-1000.rds"
+)
+
+
+
 xs <- lapply(fnames, qread);
 
 samples <- unlist(lapply(xs, function(x) x$meta$cell_line));
@@ -880,11 +930,16 @@ g <- ggplot(all.n.s, aes(x = concentration, y = ym)) + theme_bw() +
 		scale_x_log10() + 
 		scale_fill_manual(values=cols) +
 		scale_colour_manual(values=cols) + 
-		guides(fill = FALSE) +
+		guides(fill = "none") +
 		ylab(gsub("_", " ", tools::toTitleCase(measure))) +
 		xlab("Concentration (uM)") +
 		ggtitle(pl.title) +
-		theme(legend.position = "bottom", legend.title = element_blank())
+		theme(
+			legend.position = "bottom", legend.title = element_blank(),
+			panel.grid.major.x = element_blank(),
+			panel.grid.minor.x = element_blank(),
+			panel.grid.minor.y = element_blank()
+		)
 
 if (draw.ci) {
 	data.ymin <- min(ymin);
@@ -893,6 +948,8 @@ if (draw.ci) {
 	data.ymin <- min(all.n.s$ym);
 	data.ymax <- max(all.n.s$ym);
 }
+data.ymin <- ifelse(is.finite(data.ymin), data.ymin, 0);
+data.ymax <- ifelse(is.finite(data.ymax), data.ymax, 1);
 	
 if (measure == "relative_viability") {
 	g <- g + scale_y_continuous(breaks=c(0, 0.25, 0.5, 0.75, 1.0),
